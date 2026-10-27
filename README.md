@@ -1,18 +1,20 @@
 # Tactile Playground
 
+**Live:** https://tactile-playground-nu.vercel.app
+
 Interactive UI experiments by [Tanishq Sharma](https://tanishq-designs.vercel.app/), a product designer. They're interfaces that behave like real things: liquid metal, paper, glass, fire and ink.
 
 | Experiment | What it is |
 |---|---|
-| [`/lab`](lab/index.html) | **Tactile Button Lab**: 60 elements, from mercury tabs and a rotary OTP to a shredder delete and a fingerprint confirm |
-| [`/haunted`](haunted/index.html) | **Haunted UI Kit**: 8 possessed components for Halloween |
-| [`/wordforms`](wordforms/index.html) | **Wordforms**: type a word and its letters swarm into the shape it names |
-| [`/survive-the-wait`](survive-the-wait/index.html) | **Survive the Wait**: a one-minute arcade game about waiting for GTA 6 (unofficial fan parody) |
-| [`/allotment-machine`](allotment-machine/index.html) | **IPO Allotment Machine**: a parody slot machine (not financial advice) |
+| [`/lab`](lab.html) | **Tactile Button Lab**: 60 elements, from mercury tabs and a rotary OTP to a shredder delete and a fingerprint confirm |
+| [`/haunted`](haunted.html) | **Haunted UI Kit**: 8 possessed components for Halloween |
+| [`/wordforms`](wordforms.html) | **Wordforms**: type a word and its letters swarm into the shape it names |
+| [`/survive-the-wait`](survive-the-wait.html) | **Survive the Wait**: a one-minute arcade game about waiting for GTA 6 (unofficial fan parody) |
+| [`/allotment-machine`](allotment-machine.html) | **IPO Allotment Machine**: a parody slot machine (not financial advice) |
 
 ## Use it
 
-Every experiment is a single `index.html` file:
+Every experiment is a single HTML file:
 
 - no build step
 - no framework
