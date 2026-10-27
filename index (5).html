@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}.xp-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:10px;font:500 12.5px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;opacity:.78;position:relative;z-index:30}.xp-bar a{color:inherit;text-decoration:none}.xp-bar a:hover{text-decoration:underline}</style>
+<meta name="description" content="Eight possessed interface components for Halloween: a ghost cursor, a Ouija answer box, a midnight button and more."><meta property="og:title" content="Haunted UI Kit"><meta property="og:description" content="Eight possessed interface components for Halloween: a ghost cursor, a Ouija answer box, a midnight button and more."><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><meta name="author" content="Tanishq Sharma">
+<title>Haunted UI Kit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Cinzel:wght@600;700&display=swap">
+<style>
+/* Layout: a haunted specimen shelf. Dripping title, then a grid of eight possessed components. Single dark theme by design: it is Halloween. */
+:root{
+  --bg:#120c18; --surface:#1a1222; --line:#2e2338; --fg:#efe6d8; --muted:#9d91a8; --accent:#ff7a1a; --slime:#9be15d;
+  --f-drip:"Rubik Wet Paint","Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --f-board:"Cinzel",Georgia,serif;
+  color-scheme:dark;
+}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 60px}
+.wrap{max-width:1180px;margin:0 auto}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+header{padding-block:50px 30px;display:grid;gap:14px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--f-drip);font-weight:400;font-size:clamp(46px,9vw,104px);line-height:.95;margin:0;color:var(--accent);text-wrap:balance;text-shadow:0 0 40px rgba(255,122,26,.35)}
+h1 span{color:var(--slime);text-shadow:0 0 40px rgba(155,225,93,.3)}
+.lede{max-width:60ch;color:#c4b9cc;margin:0;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.stage{position:relative;height:290px;overflow:hidden;display:grid;place-items:center;user-select:none;-webkit-user-select:none}
+.meta{display:flex;gap:12px;align-items:flex-start;padding:14px 16px 16px;border-top:1px solid var(--line);flex:1}
+.num{font-family:var(--f-mono);font-size:12px;color:var(--accent);padding-top:4px}
+.txt{flex:1;min-width:0}
+.meta h2{font-family:var(--f-display);font-size:19px;font-weight:600;margin:0;letter-spacing:-.01em}
+.meta p{margin:3px 0 0;color:var(--muted);font-size:13.5px}
+.full{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.mini{border:1px solid currentColor;background:transparent;color:inherit;font:600 13px var(--f-body);padding:7px 14px;border-radius:10px;cursor:pointer}
+footer{padding-block:34px 0;color:var(--muted);font-size:13px}
+
+/* H1 possessed form */
+.st-pos{background:radial-gradient(100% 90% at 50% 20%,#241830,#120c18)}
+.pos{display:grid;gap:10px;width:min(276px,88%)}
+.pos label{display:grid;gap:4px;font-size:12.5px;font-weight:600;color:#c9bfd2}
+.pos input,.pos textarea{border:1px solid #3c2f49;background:#1d1427;color:var(--fg);border-radius:10px;padding:9px 11px;font:14px var(--f-body);resize:none;transition:color .2s,box-shadow .2s}
+.pos .possessed{color:#ff5a5a;box-shadow:0 0 0 1px #ff5a5a,0 0 22px rgba(255,60,60,.35);animation:jitter .12s infinite}
+@keyframes jitter{50%{transform:translate(.6px,-.4px)}}
+.pos button{justify-self:start;border:0;border-radius:10px;padding:9px 16px;background:var(--fg);color:#160f1d;font:600 13.5px var(--f-body);cursor:pointer}
+.pos-hint{margin:0;font:500 11.5px var(--f-mono);color:var(--muted);min-height:17px}
+
+/* H2 ghost cursor */
+.st-ghost{background:radial-gradient(100% 90% at 50% 60%,#1d2433,#0d1017);cursor:default}
+.gc-wrap{display:grid;justify-items:center;gap:18px}
+.candle{position:relative;width:26px;height:70px;border-radius:4px;background:linear-gradient(90deg,#d8cfbf,#f6f0e4,#d8cfbf)}
+.candle::before{content:"";position:absolute;left:50%;top:-8px;width:2px;height:9px;margin-left:-1px;background:#2b2118}
+.flame{position:absolute;left:50%;top:-34px;width:16px;height:26px;margin-left:-8px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 50% 70%,#fff8d0 0 25%,#ffc247 50%,rgba(255,110,20,.0) 75%);filter:drop-shadow(0 0 14px rgba(255,190,80,.9));opacity:0;transform:scale(.3);transition:opacity .2s,transform .25s;animation:flick 1.2s infinite alternate}
+@keyframes flick{to{transform:scale(1,1.08) rotate(2deg)}}
+.lit .flame{opacity:1;transform:scale(1)}
+.st-ghost.lit{background:radial-gradient(70% 60% at 50% 45%,#4a3420,#151019 70%)}
+.gc-btn{border:0;border-radius:12px;background:#ffc247;color:#2a1a00;font:600 14px var(--f-body);padding:10px 18px;cursor:pointer}
+.ghost{position:absolute;left:0;top:0;width:40px;height:46px;pointer-events:none;opacity:.75;z-index:3;filter:drop-shadow(0 0 10px rgba(200,220,255,.5))}
+.ring{position:absolute;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;border:2px solid rgba(200,220,255,.8);border-radius:50%;pointer-events:none;z-index:3}
+.gc-say{position:absolute;bottom:16px;left:0;right:0;text-align:center;margin:0;font:500 12.5px var(--f-mono);color:#a9b4cc}
+
+/* H3 midnight button */
+.st-mid{background:radial-gradient(100% 90% at 50% 30%,#1b1d36,#0b0b18)}
+.mid-clock{position:absolute;top:18px;left:0;right:0;text-align:center;font:500 28px var(--f-mono);letter-spacing:.06em;color:#cfd3ff;font-variant-numeric:tabular-nums}
+.mid-clock small{display:block;font-size:11px;letter-spacing:.14em;color:#7b80b0}
+.st-mid.cursed .mid-clock{color:#ff4d4d;text-shadow:0 0 18px rgba(255,60,60,.6)}
+.mid-btn{position:relative;border:0;border-radius:14px;background:#7c6cff;color:#fff;font:600 16px var(--f-body);padding:13px 24px;cursor:pointer;will-change:transform;transition:background .25s}
+.mid-btn::after{content:"";position:absolute;left:50%;bottom:-7px;width:22px;height:9px;margin-left:-11px;background:linear-gradient(135deg,rgba(0,0,0,0) 40%,#fff 41% 59%,rgba(0,0,0,0) 60%) 0 0/11px 9px repeat-x;opacity:0;transition:opacity .2s}
+.st-mid.cursed .mid-btn{background:#b0141e}
+.st-mid.cursed .mid-btn::after{opacity:1}
+.bat{position:absolute;left:0;top:0;width:34px;height:17px;pointer-events:none;z-index:3}
+.bat svg{width:100%;height:100%;animation:flap .16s infinite alternate;transform-origin:50% 60%}
+@keyframes flap{to{transform:scaleY(.35)}}
+.mid-msg{position:absolute;bottom:18px;left:0;right:0;text-align:center;margin:0;font:500 12.5px var(--f-mono);color:#9ea3d6}
+
+/* H4 pumpkin toggle */
+.st-pump{background:radial-gradient(100% 90% at 50% 50%,#1f1712,#0e0a08);transition:background .4s}
+.st-pump.on{background:radial-gradient(70% 70% at 50% 50%,#5a2a0a,#170b05 80%)}
+.pump{position:relative;width:150px;height:76px;border-radius:40px;border:0;padding:0;background:#2a2019;box-shadow:inset 0 4px 12px rgba(0,0,0,.6);cursor:pointer}
+.st-pump.on .pump{background:#4a2a12}
+.pump-k{position:absolute;left:4px;top:-6px;width:86px;height:86px;transition:transform .55s cubic-bezier(.3,1.5,.5,1)}
+.st-pump.on .pump-k{transform:translateX(56px) rotate(360deg)}
+.pump-k svg{width:100%;height:100%;overflow:visible}
+.face{fill:#2a1300;transition:fill .2s}
+.st-pump.on .face{fill:#ffd34d;filter:drop-shadow(0 0 6px #ffb020);animation:pflick .2s infinite alternate}
+@keyframes pflick{to{opacity:.8}}
+.pump-lbl{position:absolute;bottom:22px;left:0;right:0;text-align:center;margin:0;font:500 12.5px var(--f-mono);color:#c79a6e}
+
+/* H5 spider loader */
+.st-spider{background:radial-gradient(100% 90% at 50% 20%,#1e1a24,#0c0a0f);cursor:pointer}
+.sp-lbl{position:absolute;bottom:20px;left:0;right:0;text-align:center;margin:0;font:500 13px var(--f-mono);color:#cfc6db;font-variant-numeric:tabular-nums}
+
+/* H6 ouija */
+.st-ouija{height:310px;background:radial-gradient(100% 90% at 50% 40%,#2a1a12,#120b08);align-content:start;padding-top:14px}
+.board{position:relative;width:min(310px,92%);height:178px;border-radius:18px;background:radial-gradient(120% 100% at 50% 40%,#d9b78a,#a87a49);box-shadow:inset 0 0 0 3px #6e4a28,inset 0 0 0 6px #d9b78a,inset 0 0 0 7px #6e4a28,0 14px 30px rgba(0,0,0,.5)}
+.lt{position:absolute;left:0;top:0;transform:translate(-50%,-50%);font:700 16px var(--f-board);color:#3a220f}
+.lt.word{font-size:14px;letter-spacing:.08em}
+.planch{position:absolute;left:0;top:0;width:54px;height:64px;margin:-24px 0 0 -27px;border-radius:50% 50% 46% 46%/62% 62% 38% 38%;background:radial-gradient(circle at 50% 38%,rgba(0,0,0,0) 0 10px,#2b1a0e 10.5px 12.5px,rgba(240,225,200,.92) 13px);box-shadow:0 8px 14px rgba(0,0,0,.45);pointer-events:none;z-index:2}
+.ou-ans{margin:10px 0 6px;min-height:28px;font:700 22px var(--f-board);letter-spacing:.2em;color:#ffcf8a;text-shadow:0 0 14px rgba(255,170,80,.5)}
+.ou-form{display:flex;gap:8px;width:min(310px,92%)}
+.ou-form input{flex:1;min-width:0;border:1px solid #5a3b22;background:#1e130c;color:#f3e2c8;border-radius:10px;padding:8px 10px;font:13.5px var(--f-body)}
+.ou-form button{border:0;border-radius:10px;padding:0 14px;background:#ffcf8a;color:#2a1608;font:600 13.5px var(--f-body);cursor:pointer}
+
+/* H7 graveyard */
+.st-grave{background:linear-gradient(#141b2c,#0d1220 70%);align-content:start;padding-top:16px}
+.files{display:grid;gap:6px;width:min(280px,90%);z-index:2}
+.frow{display:flex;align-items:center;gap:10px;background:#1c2436;border:1px solid #2a3550;border-radius:10px;padding:7px 10px;font-size:13px;transition:opacity .35s,transform .35s}
+.frow.dead{opacity:.18;transform:translateY(6px) scale(.97);pointer-events:none}
+.frow .fi{width:22px;height:26px;border-radius:4px;background:#5b6b8f;flex:none}
+.frow span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--f-mono);font-size:12.5px}
+.frow button{border:0;background:rgba(255,90,90,.15);color:#ff9a9a;font:600 12px var(--f-body);padding:5px 9px;border-radius:7px;cursor:pointer}
+.frow.back{animation:back .6s}
+@keyframes back{0%{box-shadow:0 0 0 2px var(--slime)}100%{box-shadow:0 0 0 0 rgba(155,225,93,0)}}
+.ground{position:absolute;left:-10%;right:-10%;bottom:-40px;height:110px;border-radius:50% 50% 0 0;background:#1d2b1f;z-index:1}
+.tombs{position:absolute;left:0;right:0;bottom:30px;display:flex;justify-content:center;gap:14px;z-index:1;height:96px;align-items:flex-end}
+.tomb{position:relative;width:76px;height:90px;border:0;padding:8px 4px 0;border-radius:38px 38px 4px 4px;background:linear-gradient(#9aa0ab,#6c727d);color:#2b2f36;font:600 9.5px var(--f-mono);text-align:center;cursor:pointer;display:grid;align-content:start;gap:2px;animation:rise .6s cubic-bezier(.3,1.3,.5,1)}
+.tomb b{font:700 15px var(--f-board);letter-spacing:.06em}
+.tomb span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tomb i{font-style:normal;opacity:.75}
+@keyframes rise{from{transform:translateY(100px)}}
+.tomb.sink{animation:sink .5s ease-in forwards}
+@keyframes sink{to{transform:translateY(110px)}}
+.soul{position:absolute;left:0;top:0;width:30px;height:36px;pointer-events:none;z-index:3}
+
+/* H8 lights out */
+.st-dark{background:#e9e4f0}
+.room{position:absolute;inset:0;background:linear-gradient(90deg,rgba(110,90,140,.08) 50%,rgba(0,0,0,0) 50%) 0 0/22px 22px,#e9e4f0;transition:filter .1s}
+.set{position:relative;z-index:4;background:#fff;border-radius:16px;padding:16px 18px;width:min(250px,82%);box-shadow:0 12px 26px rgba(50,30,80,.18);color:#221a2e;display:grid;gap:12px}
+.set .ttl{margin:0;font:700 18px var(--f-display)}
+.set .row{display:flex;justify-content:space-between;align-items:center;font-size:14.5px}
+.sw{position:relative;width:52px;height:30px;border-radius:20px;border:0;background:#cfc8da;cursor:pointer;transition:background .3s}
+.sw i{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.sw[aria-checked="true"]{background:#7c6cff}.sw[aria-checked="true"] i{transform:translateX(22px)}
+.dark-veil{position:absolute;inset:0;background:#07050a;opacity:0;pointer-events:none;z-index:2}
+.st-dark.off .set{background:#1a1622;color:#e8e2f0;box-shadow:0 0 0 1px #2c2537}
+.eyes{position:absolute;left:0;top:0;display:flex;gap:8px;z-index:3;pointer-events:none;opacity:0;transition:opacity .4s}
+.eyes.show{opacity:1}
+.eyes i{position:relative;width:16px;height:10px;border-radius:50%;background:#ffe36b;box-shadow:0 0 12px 2px rgba(255,220,80,.65);animation:blink 4s infinite;overflow:hidden}
+.eyes b{position:absolute;left:50%;top:0;width:3px;height:10px;margin-left:-1.5px;border-radius:2px;background:#1a0f00}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.dk-say{position:absolute;bottom:16px;left:0;right:0;text-align:center;margin:0;font:500 12.5px var(--f-mono);color:#6b5f7d;z-index:4}
+.st-dark.off .dk-say{color:#8f82a3}
+@media (prefers-reduced-motion:reduce){.pos .possessed{animation:none}.flame,.bat svg{animation:none}}
+</style>
+</head>
+<body>
+<nav class="xp-bar" aria-label="Site"><a href="/">← All experiments</a><a href="https://tanishq-designs.vercel.app/" target="_blank" rel="noopener">by Tanishq Sharma</a></nav>
+
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Halloween 2026 · 8 possessed components</p>
+  <h1>Haunted <span>UI</span> Kit</h1>
+  <p class="lede">Everyday interface parts with something living inside them. Plain HTML, CSS and JavaScript in a single file, free to use in your own work.</p>
+</header>
+
+<main class="grid">
+
+<article class="card"><div class="stage st-pos" id="h1">
+  <form class="pos" id="posForm"><label>Your name<input id="posName" value="Riya" autocomplete="off"></label>
+    <label>Message<textarea id="posMsg" rows="3" spellcheck="false">Hi, I'd like to book a table for two.</textarea></label>
+    <button type="button" id="posBtn">Exorcise</button><p class="pos-hint" id="posHint" aria-live="polite">Stop typing for a few seconds...</p></form>
+  </div><div class="meta"><span class="num">01</span><div class="txt"><h2>Possessed form</h2><p>Stop typing and the form starts typing by itself. Exorcise to clean it up.</p></div></div></article>
+
+<article class="card"><div class="stage st-ghost" id="h2">
+  <div class="gc-wrap" id="gcWrap"><div class="candle"><span class="flame"></span></div><button class="gc-btn" id="gcBtn" type="button">Light the candle</button></div>
+  <p class="gc-say" id="gcSay">Something is copying your every move</p>
+  </div><div class="meta"><span class="num">02</span><div class="txt"><h2>Ghost cursor</h2><p>A ghost repeats everything you do a second later. Light the candle and see what it does.</p></div></div></article>
+
+<article class="card"><div class="stage st-mid" id="h3">
+  <p class="mid-clock" id="midClock">23:59:48<small>TABLE BOOKING CLOSES AT MIDNIGHT</small></p>
+  <button class="mid-btn" id="midBtn" type="button">Book a table</button>
+  <p class="mid-msg" id="midMsg">Wait for midnight</p>
+  </div><div class="meta"><span class="num">03</span><div class="txt"><h2>Midnight button</h2><p>At 00:00 the button grows fangs, runs from you and releases bats.</p></div></div></article>
+
+<article class="card"><div class="stage st-pump" id="h4">
+  <button class="pump" id="pumpBtn" type="button" role="switch" aria-checked="false" aria-label="Spooky mode"><span class="pump-k"><svg viewBox="0 0 86 86" aria-hidden="true">
+    <path d="M43 14 C44 8 48 4 54 3" stroke="#4d6b2a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <ellipse cx="25" cy="50" rx="19" ry="27" fill="#e8650f"/><ellipse cx="61" cy="50" rx="19" ry="27" fill="#e8650f"/><ellipse cx="43" cy="50" rx="21" ry="30" fill="#ff8a1f"/>
+    <path d="M43 22 C36 36 36 66 43 80 M43 22 C50 36 50 66 43 80" stroke="#d45a0c" stroke-width="1.6" fill="none"/>
+    <path class="face" d="M27 42 L35 34 L37 46 Z M59 42 L51 34 L49 46 Z M24 56 L30 60 L34 56 L38 61 L43 57 L48 61 L52 56 L56 60 L62 56 C58 68 28 68 24 56 Z"/></svg></span></button>
+  <p class="pump-lbl" id="pumpLbl">Spooky mode is off</p>
+  </div><div class="meta"><span class="num">04</span><div class="txt"><h2>Jack-o'-lantern toggle</h2><p>The switch knob is a pumpkin. Turn it on and the candle inside lights the room.</p></div></div></article>
+
+<article class="card"><div class="stage st-spider" id="h5">
+  <canvas class="full" id="spCv"></canvas><p class="sp-lbl" id="spLbl">Summoning spirits 0%</p>
+  </div><div class="meta"><span class="num">05</span><div class="txt"><h2>Spider loader</h2><p>The spider lowers on its thread while the web spins. Tap to summon again.</p></div></div></article>
+
+<article class="card"><div class="stage st-ouija" id="h6">
+  <div class="board" id="board"><span class="planch" id="planch"></span></div>
+  <p class="ou-ans" id="ouAns" aria-live="polite"></p>
+  <form class="ou-form" id="ouForm"><input id="ouQ" value="Will my post go viral?" aria-label="Your question" autocomplete="off"><button type="submit">Ask</button></form>
+  </div><div class="meta"><span class="num">06</span><div class="txt"><h2>Ouija answer box</h2><p>Ask anything. The planchette slides across the board and spells out the reply.</p></div></div></article>
+
+<article class="card"><div class="stage st-grave" id="h7">
+  <div class="files" id="files"></div><div class="ground"></div><div class="tombs" id="tombs"></div>
+  </div><div class="meta"><span class="num">07</span><div class="txt"><h2>Graveyard trash</h2><p>Deleted files get a tombstone and their soul floats away. Tap a grave to bring a file back.</p></div></div></article>
+
+<article class="card"><div class="stage st-dark" id="h8">
+  <div class="room"></div><div class="dark-veil" id="veil"></div>
+  <div class="set"><p class="ttl">Appearance</p><div class="row"><span>Dark mode</span><button class="sw" id="dkSw" type="button" role="switch" aria-checked="false" aria-label="Dark mode"><i></i></button></div></div>
+  <p class="dk-say" id="dkSay">Turn on dark mode</p>
+  </div><div class="meta"><span class="num">08</span><div class="txt"><h2>Something in dark mode</h2><p>Switch to dark mode and the lights flicker out. Eyes watch your cursor and hide if you get close.</p></div></div></article>
+
+</main>
+<footer>Made by Tanishq Sharma. MIT licensed, so take what you like.</footer>
+</div>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s),clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),DPR=()=>Math.min(2,window.devicePixelRatio||1);
+const localPt=(e,el)=>{const r=el.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
+const ticks=new Map(),vis=new Set();const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target)),{rootMargin:'120px'});
+const register=(el,fn)=>{ticks.set(el,fn);io.observe(el);};let lt=performance.now();
+(function loop(now){const dt=Math.min(.05,(now-lt)/1000);lt=now;for(const [el,fn] of ticks)if(vis.has(el))fn(dt,now);requestAnimationFrame(loop);})(lt);
+let AC=null;function ac(){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();}catch(e){AC=null}}
+function snd(dur,freq,vol,type){const a=AC;if(!a)return;try{const n=Math.max(1,a.sampleRate*dur|0),b=a.createBuffer(1,n,a.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,3);
+  const s=a.createBufferSource();s.buffer=b;const f=a.createBiquadFilter();f.type=type||'bandpass';f.frequency.value=freq;const g=a.createGain();g.gain.value=vol;s.connect(f);f.connect(g);g.connect(a.destination);s.start();}catch(e){}}
+function tone(freq,dur,vol,type,end){const a=AC;if(!a)return;try{const o=a.createOscillator(),g=a.createGain(),t=a.currentTime;o.type=type||'sine';o.frequency.setValueAtTime(freq,t);o.frequency.exponentialRampToValueAtTime(end||freq*.5,t+dur);
+  g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(a.destination);o.start();o.stop(t+dur+.02);}catch(e){}}
+const GHOST='<svg viewBox="0 0 40 46" width="40" height="46"><path d="M20 2C9 2 3 10 3 21v23l5-4 4 4 4-4 4 4 4-4 4 4 4-4 5 4V21C37 10 31 2 20 2z" fill="#eef2ff" opacity=".92"/><ellipse cx="14" cy="20" rx="3" ry="4.2" fill="#1a1d2e"/><ellipse cx="26" cy="20" rx="3" ry="4.2" fill="#1a1d2e"/><ellipse cx="20" cy="30" rx="3" ry="3.6" fill="#1a1d2e"/></svg>';
+
+/* 01 Possessed form */
+(()=>{const st=$('#h1'),nm=$('#posName'),msg=$('#posMsg'),btn=$('#posBtn'),hint=$('#posHint');let last=performance.now(),haunt=null,base={n:nm.value,m:msg.value};
+  const PH=[' let me in',' i can see you typing',' behind you.',' it is so cold in here',' do not send this',' who is Riya?'];
+  const userType=e=>{last=performance.now();if(haunt){haunt.el.classList.remove('possessed');haunt=null;}base={n:nm.value,m:msg.value};hint.textContent='Stop typing for a few seconds...';};
+  nm.addEventListener('input',userType);msg.addEventListener('input',userType);
+  btn.addEventListener('click',()=>{ac();if(haunt){haunt.el.classList.remove('possessed');haunt=null;}nm.value=base.n;msg.value=base.m;last=performance.now();tone(880,.4,.08,'sine',1760);
+    st.animate([{filter:'brightness(2.2)'},{filter:'brightness(1)'}],{duration:450});hint.textContent='Cleansed. For now.';});
+  register(st,(dt,now)=>{if(!haunt&&now-last>2600){const el=Math.random()<.75?msg:nm;haunt={el,txt:PH[Math.random()*PH.length|0],i:0,t:0,done:0};el.classList.add('possessed');hint.textContent='It is typing...';}
+    if(haunt){const h=haunt;h.t+=dt;if(h.i<h.txt.length){if(h.t>.09+Math.random()*.08){h.t=0;h.el.value+=h.txt[h.i++];h.el.scrollTop=1e4;snd(.012,3000,.15);}}
+      else{h.done+=dt;if(h.done>1.6){h.el.classList.remove('possessed');haunt=null;last=now-800;hint.textContent='Exorcise it, or wait for more';}}}});})();
+
+/* 02 Ghost cursor */
+(()=>{const st=$('#h2'),btn=$('#gcBtn'),say=$('#gcSay'),DELAY=1100;const g=document.createElement('div');g.className='ghost';g.innerHTML=GHOST;st.appendChild(g);
+  const path=[],clicks=[];let lit=false,gx=0,gy=0;
+  const rec=e=>{const q=localPt(e,st);path.push({x:q.x,y:q.y,t:performance.now()});if(path.length>400)path.shift();};
+  st.addEventListener('pointermove',rec);
+  st.addEventListener('pointerdown',e=>{ac();rec(e);const q=localPt(e,st);clicks.push({x:q.x,y:q.y,t:performance.now()});});
+  btn.addEventListener('click',()=>{if(!lit){lit=true;st.classList.add('lit');say.textContent='You lit the candle...';tone(500,.2,.05,'triangle',900);}});
+  function ghostClick(x,y){const r=document.createElement('i');r.className='ring';st.appendChild(r);r.style.transform=`translate(${x}px,${y}px)`;
+    r.animate([{transform:`translate(${x}px,${y}px) scale(.3)`,opacity:1},{transform:`translate(${x}px,${y}px) scale(1.6)`,opacity:0}],{duration:500}).onfinish=()=>r.remove();
+    const sr=st.getBoundingClientRect(),br=btn.getBoundingClientRect();if(lit&&x>br.left-sr.left-6&&x<br.right-sr.left+6&&y>br.top-sr.top-6&&y<br.bottom-sr.top+6){lit=false;st.classList.remove('lit');say.textContent='...and the ghost blew it out';snd(.3,500,.8,'lowpass');}}
+  register(st,(dt,now)=>{const target=now-DELAY;let p=null;while(path.length>1&&path[1].t<=target)path.shift();if(path.length&&path[0].t<=target)p=path[0];
+    if(!p){const t=now/1000,w=st.clientWidth,h=st.clientHeight;p={x:w/2+Math.sin(t*.7)*w*.33,y:h*.45+Math.sin(t*1.1)*h*.25};}
+    gx+=(p.x-gx)*Math.min(1,dt*10);gy+=(p.y-gy)*Math.min(1,dt*10);g.style.transform=`translate(${gx-20}px,${gy-14}px) rotate(${Math.sin(now/300)*6}deg)`;
+    while(clicks.length&&clicks[0].t<=target){const c=clicks.shift();ghostClick(c.x,c.y);}});})();
+
+/* 03 Midnight button */
+(()=>{const st=$('#h3'),clk=$('#midClock'),btn=$('#midBtn'),msg=$('#midMsg');const BAT='<svg viewBox="0 0 24 12"><path d="M0 6C3 0 7 2 8 5C9 2 11 2 12 4C13 2 15 2 16 5C17 2 21 0 24 6C20 5 18 8 16 9C14 8 13 10 12 12C11 10 10 8 8 9C6 8 4 5 0 6Z" fill="#0b0814"/><circle cx="10.6" cy="6" r=".7" fill="#ff4d4d"/><circle cx="13.4" cy="6" r=".7" fill="#ff4d4d"/></svg>';
+  let secs=48,acc=0,cursed=0,p=null,ox=0,oy=0;const label=clk.querySelector('small').outerHTML;
+  st.addEventListener('pointermove',e=>{if(e.pointerType!=='touch')p=localPt(e,st)});st.addEventListener('pointerleave',()=>p=null);
+  function bats(){const bx=btn.offsetLeft+btn.offsetWidth/2+ox,by=btn.offsetTop+btn.offsetHeight/2+oy;for(let i=0;i<10;i++){const b=document.createElement('div');b.className='bat';b.innerHTML=BAT;st.appendChild(b);
+      const a=-Math.PI/2+(Math.random()-.5)*2.6,d=220+Math.random()*120,mx=bx+Math.cos(a)*d*.4+(Math.random()-.5)*60,my=by+Math.sin(a)*d*.4;
+      b.animate([{transform:`translate(${bx-17}px,${by-8}px) scale(.3)`},{transform:`translate(${mx}px,${my}px) scale(1)`,offset:.4},{transform:`translate(${bx+Math.cos(a)*d}px,${by+Math.sin(a)*d}px) scale(.8)`}],{duration:1400+Math.random()*600,easing:'ease-out',delay:i*50,fill:'backwards'}).onfinish=()=>b.remove();}
+    snd(.4,2600,.5);}
+  btn.addEventListener('click',()=>{ac();msg.textContent=cursed?'Bold. It bit you.':'Booked for 11:59 pm. Just in time.';if(cursed)tone(140,.5,.2,'sawtooth',60);});
+  register(st,(dt,now)=>{acc+=dt;if(acc>=1){acc-=1;
+      if(cursed){cursed--;if(!cursed){secs=48;st.classList.remove('cursed');btn.textContent='Book a table';msg.textContent='Wait for midnight';}}
+      else{secs++;if(secs>=60){cursed=7;st.classList.add('cursed');btn.textContent='NOT NOW';msg.textContent='Booking is cursed after midnight';bats();}}
+      clk.innerHTML=(cursed?'00:00:'+String(7-cursed).padStart(2,'0'):'23:59:'+String(secs).padStart(2,'0'))+label;}
+    let tx=0,ty=0;const w=st.clientWidth,h=st.clientHeight;
+    if(cursed&&p){const cx=w/2+ox,cy=h/2+oy,dx=cx-p.x,dy=cy-p.y,d=Math.hypot(dx,dy)||1,c=clamp(1-(d-30)/170,0,1);tx=clamp(ox+dx/d*c*60,-(w/2-90),w/2-90);ty=clamp(oy+dy/d*c*50,-(h/2-60),h/2-70);}
+    else if(cursed){const t=now/1000;tx=Math.sin(t*5)*30;ty=Math.cos(t*4)*16;}
+    ox+=(tx-ox)*Math.min(1,dt*7);oy+=(ty-oy)*Math.min(1,dt*7);btn.style.transform=`translate(${ox}px,${oy}px) rotate(${cursed?Math.sin(now/60)*3:0}deg)`;});})();
+
+/* 04 Pumpkin toggle */
+(()=>{const st=$('#h4'),b=$('#pumpBtn'),lbl=$('#pumpLbl');let on=false;
+  b.addEventListener('click',()=>{ac();on=!on;b.setAttribute('aria-checked',on);st.classList.toggle('on',on);lbl.textContent=on?'Spooky mode is on':'Spooky mode is off';
+    if(on){tone(220,.6,.08,'triangle',110);snd(.08,1200,.4);}else snd(.2,500,.5,'lowpass');});})();
+
+/* 05 Spider loader */
+(()=>{const st=$('#h5'),cv=$('#spCv'),ctx=cv.getContext('2d'),lbl=$('#spLbl');let D=1,w=0,h=0,p=0,hold=0;
+  function size(){D=DPR();w=st.clientWidth;h=st.clientHeight;cv.width=w*D;cv.height=h*D;}new ResizeObserver(size).observe(st);
+  st.addEventListener('click',()=>{p=0;hold=0;});
+  function web(cx,cy,a0,a1,R,k){const spokes=7;ctx.strokeStyle='rgba(225,220,235,.55)';ctx.lineWidth=.8;
+    for(let i=0;i<spokes;i++){const f=clamp(k*3-i*.15,0,1);if(f<=0)continue;const a=a0+(a1-a0)*i/(spokes-1);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*R*f,cy+Math.sin(a)*R*f);ctx.stroke();}
+    const rings=Math.floor(clamp((k-.3)/.7,0,1)*9);for(let r=1;r<=rings;r++){const rr=R*r/10;ctx.beginPath();for(let i=0;i<spokes;i++){const a=a0+(a1-a0)*i/(spokes-1),q=rr*(i%2?.93:1),x=cx+Math.cos(a)*q,y=cy+Math.sin(a)*q;i?ctx.quadraticCurveTo(cx+Math.cos(a-(a1-a0)/(2*(spokes-1)))*q*.92,cy+Math.sin(a-(a1-a0)/(2*(spokes-1)))*q*.92,x,y):ctx.moveTo(x,y);}ctx.stroke();}}
+  register(st,(dt,now)=>{if(!w)return;const t=now/1000;if(p<1)p=Math.min(1,p+dt*(.1+.12*Math.abs(Math.sin(t*1.7))));else{hold+=dt;if(hold>3.2){p=0;hold=0;}}
+    lbl.textContent=p<1?`Summoning spirits ${Math.floor(p*100)}%`:'Spirits summoned';
+    ctx.setTransform(D,0,0,D,0,0);ctx.clearRect(0,0,w,h);web(0,0,0,Math.PI/2,Math.min(150,w*.45),p);web(w,0,Math.PI/2,Math.PI,Math.min(150,w*.45),clamp(p*1.2-.15,0,1));
+    const x=w/2+Math.sin(t*1.3)*4*(1-p),y=24+p*(h-110);ctx.strokeStyle='rgba(235,230,245,.7)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(w/2,0);ctx.lineTo(x,y-10);ctx.stroke();
+    ctx.strokeStyle='#0c0a10';ctx.lineWidth=2.2;ctx.lineCap='round';
+    for(let s=-1;s<=1;s+=2)for(let i=0;i<4;i++){const wave=p>=1&&i===0?Math.sin(t*10)*.6:Math.sin(t*6+i)*.12,a=(s>0?0:Math.PI)+s*(-.7+i*.45+wave);
+      const kx=x+Math.cos(a)*14,ky=y+Math.sin(a)*14-6;ctx.beginPath();ctx.moveTo(x,y);ctx.quadraticCurveTo(kx,ky,kx+Math.cos(a+s*.9)*10,ky+Math.abs(Math.sin(a))*4+12);ctx.stroke();}
+    ctx.fillStyle='#16121c';ctx.beginPath();ctx.ellipse(x,y+2,10,12,0,0,7);ctx.fill();ctx.beginPath();ctx.arc(x,y-11,7,0,7);ctx.fill();
+    ctx.fillStyle='#ff4d4d';ctx.beginPath();ctx.arc(x-2.6,y-12,1.6,0,7);ctx.arc(x+2.6,y-12,1.6,0,7);ctx.fill();
+    ctx.fillStyle='rgba(255,122,26,.85)';ctx.beginPath();ctx.moveTo(x,y-2);ctx.lineTo(x+4,y+3);ctx.lineTo(x,y+8);ctx.lineTo(x-4,y+3);ctx.closePath();ctx.fill();});})();
+
+/* 06 Ouija */
+(()=>{const board=$('#board'),pl=$('#planch'),ans=$('#ouAns'),form=$('#ouForm'),q=$('#ouQ');const pos={};let busy=false;
+  function layout(){board.querySelectorAll('.lt').forEach(e=>e.remove());const W=board.clientWidth,H=board.clientHeight;
+    const put=(k,x,y,cls)=>{const e=document.createElement('span');e.className='lt'+(cls?' '+cls:'');e.textContent=k;e.style.left=x+'px';e.style.top=y+'px';board.appendChild(e);pos[k]={x,y};};
+    put('YES',W*.14,24,'word');put('NO',W*.86,24,'word');put('GOODBYE',W*.5,H-20,'word');
+    ['ABCDEFGHIJKLM','NOPQRSTUVWXYZ'].forEach((row,r)=>{const n=row.length;[...row].forEach((c,i)=>{const t=i/(n-1);put(c,W*(.07+.86*t),(r?112:74)-Math.sin(Math.PI*t)*22);});});
+    pos[' ']={x:W*.5,y:H*.6};pl.style.transform=`translate(${W*.5}px,${H*.6}px)`;}
+  document.fonts.ready.then(layout);new ResizeObserver(()=>{if(!busy)layout();}).observe(board);
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));let cur={x:0,y:0};
+  async function moveTo(k){const p=pos[k];if(!p)return;const a=pl.animate([{transform:getComputedStyle(pl).transform},{transform:`translate(${p.x}px,${p.y}px)`}],{duration:650,easing:'cubic-bezier(.45,0,.3,1)',fill:'forwards'});await a.finished;pl.style.transform=`translate(${p.x}px,${p.y}px)`;a.cancel();}
+  function pick(text){const t=text.toLowerCase();if(t.includes('viral'))return Math.random()<.7?'YES':'POST AT NINE';if(t.includes('ship'))return 'SHIP IT';const A=['YES','NO','MAYBE','BOO','ASK AGAIN','NOT TODAY'];return A[Math.random()*A.length|0];}
+  form.addEventListener('submit',async e=>{e.preventDefault();if(busy||!q.value.trim())return;busy=true;ac();ans.textContent='';const a=pick(q.value);
+    const seq=(a==='YES'||a==='NO')?[a]:[...a];for(const k of seq){await moveTo(k);snd(.03,700,.4,'lowpass');ans.textContent+=k.length>1?k:k;await wait(260);}
+    await wait(600);await moveTo(' ');busy=false;});})();
+
+/* 07 Graveyard trash */
+(()=>{const st=$('#h7'),files=$('#files'),tombs=$('#tombs');const F=[['final_v7.fig','Never exported'],['logo_old.png','Replaced by v2'],['notes (1).txt','Unsaved']];
+  F.forEach(([n,ep],i)=>{const r=document.createElement('div');r.className='frow';r.innerHTML=`<i class="fi"></i><span>${n}</span><button type="button">Delete</button>`;files.appendChild(r);
+    r.querySelector('button').addEventListener('click',()=>kill(r,n,ep));});
+  function kill(r,n,ep){ac();r.classList.add('dead');const t=document.createElement('button');t.type='button';t.className='tomb';t.setAttribute('aria-label','Restore '+n);
+    t.innerHTML=`<b>RIP</b><span>${n}</span><i>2024–2026</i><i>${ep}</i>`;tombs.appendChild(t);tone(110,.7,.15,'sine',70);
+    setTimeout(()=>{const s=document.createElement('div');s.className='soul';s.innerHTML=GHOST;st.appendChild(s);const sr=st.getBoundingClientRect(),tr=t.getBoundingClientRect(),x=tr.left-sr.left+23,y=tr.top-sr.top;
+      s.animate([{transform:`translate(${x}px,${y}px) scale(.4)`,opacity:0},{transform:`translate(${x-14}px,${y-60}px) scale(.9)`,opacity:.9,offset:.4},{transform:`translate(${x+16}px,${y-150}px) scale(1)`,opacity:0}],{duration:1800,easing:'ease-out'}).onfinish=()=>s.remove();},450);
+    t.addEventListener('click',()=>{t.classList.add('sink');setTimeout(()=>t.remove(),500);r.classList.remove('dead');r.classList.add('back');setTimeout(()=>r.classList.remove('back'),700);tone(440,.3,.06,'triangle',880);});}})();
+
+/* 08 Something in dark mode */
+(()=>{const st=$('#h8'),sw=$('#dkSw'),veil=$('#veil'),say=$('#dkSay');let dark=false,p=null;const pairs=[];
+  for(let i=0;i<6;i++){const e=document.createElement('div');e.className='eyes';e.innerHTML='<i><b></b></i><i><b></b></i>';e.querySelectorAll('i').forEach(x=>x.style.animationDelay=(Math.random()*4)+'s');st.appendChild(e);pairs.push({el:e,x:0,y:0,hid:0});}
+  function place(){const w=st.clientWidth,h=st.clientHeight;const spots=[[.12,.15],[.82,.12],[.08,.78],[.88,.72],[.5,.9],[.3,.08]];pairs.forEach((q,i)=>{q.x=w*spots[i][0]+(Math.random()-.5)*20;q.y=h*spots[i][1]+(Math.random()-.5)*14;q.el.style.transform=`translate(${q.x-20}px,${q.y-5}px)`;});}
+  new ResizeObserver(place).observe(st);
+  sw.addEventListener('click',()=>{ac();dark=!dark;sw.setAttribute('aria-checked',dark);
+    if(dark){say.textContent='';veil.animate([{opacity:0},{opacity:.9,offset:.15},{opacity:.2,offset:.25},{opacity:.95,offset:.4},{opacity:.5,offset:.5},{opacity:.97}],{duration:900,fill:'forwards'});st.classList.add('off');snd(.05,3000,.5);
+      setTimeout(()=>{if(!dark)return;pairs.forEach((q,i)=>setTimeout(()=>{if(dark)q.el.classList.add('show');},i*260));say.textContent="You're not alone in here";},1000);}
+    else{veil.getAnimations().forEach(a=>a.cancel());st.classList.remove('off');pairs.forEach(q=>q.el.classList.remove('show'));say.textContent='Turn on dark mode';}});
+  st.addEventListener('pointermove',e=>{p=localPt(e,st)});st.addEventListener('pointerleave',()=>p=null);
+  register(st,(dt,now)=>{if(!dark)return;pairs.forEach(q=>{let dx=0,dy=0;if(p){dx=p.x-q.x;dy=p.y-q.y;const d=Math.hypot(dx,dy);
+        if(d<55&&q.el.classList.contains('show')){q.el.classList.remove('show');q.hid=now+1800;setTimeout(()=>{const w=st.clientWidth,h=st.clientHeight;q.x=20+Math.random()*(w-40);q.y=Math.random()<.5?12+Math.random()*50:h-60+Math.random()*40;q.el.style.transform=`translate(${q.x-20}px,${q.y-5}px)`;},500);}}
+      if(q.hid&&now>q.hid){q.hid=0;q.el.classList.add('show');}
+      const d=Math.hypot(dx,dy)||1,m=Math.min(5,d*.05);q.el.querySelectorAll('b').forEach(b=>b.style.transform=`translateX(${dx/d*m}px)`);});});})();
+</script>
+
+</body>
+</html>
